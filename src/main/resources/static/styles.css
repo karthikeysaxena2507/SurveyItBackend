@@ -1,0 +1,71 @@
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(175, 135, 250);
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.up {
+    margin-top: 120px;
+}
+
+.main {
+    font-family: 'PT Serif', serif !important;
+}
+
+.space {
+    margin-bottom: 100px;
+}
+
+.upper-margin {
+    margin-top: 100px;
+}
+
+input {
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+textarea {
+    width: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:10px;
+    padding: 50px 10px;
+    font-size: larger;
+}
+
+
+.expand {
+    transition: all 0.3s ease-in-out !important;
+}
+
+.expand:hover {
+    transform: scale(1.10) !important;
+    cursor: pointer !important;
+}
+  
+.img {
+    width: 90%;
+    border: 3px solid purple;
+    border-radius: 20px;
+}
+
+.text {
+    font-size: larger;
+    font-family: monospace;
+}
