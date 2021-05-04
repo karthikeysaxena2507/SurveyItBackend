@@ -94,11 +94,12 @@ public class UserController {
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 	
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+	
+	
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/{token}")
