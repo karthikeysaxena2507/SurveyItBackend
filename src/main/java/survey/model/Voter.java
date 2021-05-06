@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,18 +18,21 @@ public class Voter {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "option_id", nullable = false)
-	private Option option;
+	@Column(name = "option_id", nullable = false)
+	private Long optionId;
+	
+	@Column(name = "survey_id", nullable = false)
+	private Long surveyId;
 	
 	public Voter() {
 		
 	}
-
-	public Voter(String name, Option option) {
+	
+	public Voter(String name, Long optionId, Long surveyId) {
 		super();
 		this.name = name;
-		this.option = option;
+		this.optionId = optionId;
+		this.surveyId = surveyId;
 	}
 
 	public long getId() {
@@ -50,12 +51,19 @@ public class Voter {
 		this.name = name;
 	}
 
-	public Option getOption() {
-		return option;
+	public Long getOptionId() {
+		return optionId;
 	}
 
-	public void setOption(Option option) {
-		this.option = option;
+	public void setOptionId(Long optionId) {
+		this.optionId = optionId;
 	}
-	
+
+	public Long getSurveyId() {
+		return surveyId;
+	}
+
+	public void setSurveyId(Long surveyId) {
+		this.surveyId = surveyId;
+	}	
 }

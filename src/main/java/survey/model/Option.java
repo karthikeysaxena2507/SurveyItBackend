@@ -1,13 +1,12 @@
 package survey.model;
 
 import java.util.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,22 +24,21 @@ public class Option {
 	@Column(name = "numberOfVotes", nullable = false)
 	private long numberOfVotes;
 	
-	@ManyToOne
-	@JoinColumn(name = "survey_id", nullable = false)
-	private Survey survey;
+	@Column(name = "survey_id", nullable = false)
+	private Long surveyId;
 	
-	@OneToMany(mappedBy = "option")
+	@OneToMany(mappedBy = "optionId")
 	private Set<Voter> voters = new HashSet<Voter>();
 	
 	public Option() {
 		
 	}
 	
-	public Option(String content, long numberOfVotes, Survey survey, Set<Voter> voters) {
+	public Option(String content, long numberOfVotes, long surveyId, Set<Voter> voters) {
 		super();
 		this.content = content;
 		this.numberOfVotes = numberOfVotes;
-		this.survey = survey;
+		this.surveyId = surveyId;
 		this.voters = voters;
 	}
 
@@ -68,12 +66,12 @@ public class Option {
 		this.numberOfVotes = numberOfVotes;
 	}
 
-	public Survey getSurvey() {
-		return survey;
+	public long getSurveyId() {
+		return surveyId;
 	}
 
-	public void setSurvey(Survey survey) {
-		this.survey = survey;
+	public void setSurveyId(long surveyId) {
+		this.surveyId = surveyId;
 	}
 
 	public Set<Voter> getVoters() {

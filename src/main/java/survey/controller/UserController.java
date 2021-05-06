@@ -98,9 +98,7 @@ public class UserController {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
-	
-	
+
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/{token}")
 	public String getUserfromToken(@PathVariable String token) {

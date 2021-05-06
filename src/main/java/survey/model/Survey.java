@@ -23,21 +23,17 @@ public class Survey {
 	@Column(name = "author", nullable = false)
 	private String author;
 	
-	@Column(name = "category", nullable = false)
-	private String category;
-	
-	@OneToMany(mappedBy = "survey")
+	@OneToMany(mappedBy = "surveyId")
 	private Set<Option> options = new HashSet<Option>();
 	
 	public Survey() {
 		
 	}
 
-	public Survey(String content, String author, String category, Set<Option> options) {
+	public Survey(String content, String author, Set<Option> options) {
 		super();
 		this.content = content;
 		this.author = author;
-		this.category = category;
 		this.options = options;
 	}
 
@@ -65,14 +61,6 @@ public class Survey {
 		this.author = author;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public Set<Option> getOptions() {
 		return options;
 	}
@@ -80,5 +68,4 @@ public class Survey {
 	public void setOptions(Set<Option> options) {
 		this.options = options;
 	}
-	
 }
