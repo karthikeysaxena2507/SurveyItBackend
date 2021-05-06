@@ -167,7 +167,7 @@ public class SurveyController {
 	}
 	
 	@PreAuthorize("isAuthenticated()")
-	@DeleteMapping("/delete")
+	@PostMapping("/delete")
 	public void deleteSurvey(@Valid @RequestBody DeleteSurvey surveyObject, @RequestHeader("Authorization") String token) {
 		token = token.substring(7, token.length());
 		String username = jwtUtils.getUserNameFromJwtToken(token);
