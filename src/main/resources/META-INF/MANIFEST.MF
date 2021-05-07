@@ -3,4 +3,4 @@ Created-By: Maven Jar Plugin 3.2.0
 Build-Jdk-Spec: 16
 Implementation-Title: Survey
 Implementation-Version: 0.0.1-SNAPSHOT
-Main-Class: com.example.SurveyApplication
+Main-Class: survey.SurveyApplication
