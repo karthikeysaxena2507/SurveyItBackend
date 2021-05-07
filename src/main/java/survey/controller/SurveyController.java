@@ -89,7 +89,7 @@ public class SurveyController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/vote")
-	public Option addVote(@Valid @RequestBody NewVoter voteObject, @RequestHeader("Authorization") String token) {
+	public List<Survey> addVote(@Valid @RequestBody NewVoter voteObject, @RequestHeader("Authorization") String token) {
 		System.out.println("JwtToken => " + token);
 		token = token.substring(7, token.length());
 		String username = jwtUtils.getUserNameFromJwtToken(token);
@@ -163,7 +163,7 @@ public class SurveyController {
 				optionRepository.save(option);
 			}
 		}
-		return option;
+		return surveyRepository.findAll();
 	}
 	
 	@PreAuthorize("isAuthenticated()")
