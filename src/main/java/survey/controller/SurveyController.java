@@ -26,7 +26,7 @@ import survey.payload.DeleteSurvey;
 import survey.payload.NewOption;
 import survey.payload.NewVoter;
 
-@CrossOrigin(origins = "https://survey-it.netlify.app/")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/api/v1/surveys")
 public class SurveyController {
