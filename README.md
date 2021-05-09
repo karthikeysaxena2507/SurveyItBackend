@@ -1,6 +1,9 @@
 # SurveyIt-Backend
-The BackEnd of a web application for conducting surveys and polls.  
-It is Built with Spring-boot, Spring-security, Maven with MySQL database. The Frontend can be found [here](https://github.com/karthikeysaxena2507/SurveyIt-FrontEnd)
+The BackEnd of a web application for conducting surveys and polls.  It is Built with Spring-boot, Spring-security, Maven and MySQL database. 
+
+## [LIVE](https://survey-it.netlify.app/) 
+
+The Backend is deployed on **[Heroku](https://survey-it-up.herokuapp.com/)** and the Frontend is deployed on **[Netlify](https://survey-it.netlify.app/)**. The code for frontend can be found **[here](https://github.com/karthikeysaxena2507/SurveyIt-FrontEnd)**
 
 ---
 
