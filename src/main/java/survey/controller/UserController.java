@@ -28,7 +28,7 @@ import survey.payload.LoginRequest;
 import survey.payload.MessageResponse;
 import survey.payload.SignupRequest;
 
-@CrossOrigin(origins = "https://survey-it.netlify.app/")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {

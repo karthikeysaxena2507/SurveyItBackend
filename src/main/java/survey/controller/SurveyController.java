@@ -26,7 +26,7 @@ import survey.payload.DeleteSurvey;
 import survey.payload.NewOption;
 import survey.payload.NewVoter;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/surveys")
 public class SurveyController {
