@@ -12,7 +12,6 @@ import com.sun.istack.NotNull;
 /**
  * @Entity annotation shows that the given class will be used as an entity
  * @Table annotation specifies the name of the table to be created for the entity in the database
- * @author karthikey
  */
 @Entity
 @Table(name = "users")
