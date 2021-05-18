@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>Survey</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	 <packaging>jar</packaging>
+	<packaging>jar</packaging>
 	<name>Survey</name>
 	<description>A web application for hoisting surveys</description>
 	<properties>
@@ -63,16 +63,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-                    <mainClass>survey.SurveyApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+				<executions>
+	                <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                </execution>
+           		</executions>
 	        </plugin>
 		</plugins>
 	</build>
