@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,6 +30,7 @@ import survey.payload.NewVoter;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/surveys")
+@Slf4j
 public class SurveyController {
 	
 	@Autowired
@@ -89,10 +91,10 @@ public class SurveyController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/vote")
 	public List<Survey> addVote(@Valid @RequestBody NewVoter voteObject, @RequestHeader("Authorization") String token) {
-		System.out.println("JwtToken => " + token);
+		log.info("JwtToken => " + token);
 		token = token.substring(7, token.length());
 		String username = jwtUtils.getUserNameFromJwtToken(token);
-		System.out.println("username => " + username);
+		log.info("username => " + username);
 		Option option = null;
 		if(!username.equals(voteObject.getName())) {
 			throw new UnauthorizedException();
@@ -114,10 +116,10 @@ public class SurveyController {
 			voters = option.getVoters();
 			Voter voter = null;
 			for(Voter currVoter:allVoters) {
-				System.out.println("currVoterName => " + currVoter.getName());
-				System.out.println("currSurveyId => " + currVoter.getSurveyId());
-				System.out.println("voteObjectName => " + voteObject.getName());
-				System.out.println("voteObjectSurveyId => " + voteObject.getSurveyId());
+				log.info("currVoterName => " + currVoter.getName());
+				log.info("currSurveyId => " + currVoter.getSurveyId());
+				log.info("voteObjectName => " + voteObject.getName());
+				log.info("voteObjectSurveyId => " + voteObject.getSurveyId());
 				if(currVoter.getName().equals(voteObject.getName()) && currVoter.getSurveyId().equals(voteObject.getSurveyId())) {
 					isVoterPresent = true;
 					voter = currVoter;
@@ -127,13 +129,13 @@ public class SurveyController {
 					break;
 				}
 			}
-			System.out.println("isVoterPresent => " + isVoterPresent);
-			System.out.println("isSameOption => " + isSameOption);
+			log.info("isVoterPresent => " + isVoterPresent);
+			log.info("isSameOption => " + isSameOption);
 			if(isVoterPresent) {
-				System.out.println("voter name => " + voter.getName());
-				System.out.println("voter Id => " + voter.getId());
-				System.out.println("voter optionId => " + voter.getOptionId());
-				System.out.println("voter surveyId => " + voter.getSurveyId());
+				log.info("voter name => " + voter.getName());
+				log.info("voter Id => " + voter.getId());
+				log.info("voter optionId => " + voter.getOptionId());
+				log.info("voter surveyId => " + voter.getSurveyId());
 				voterRepository.deleteById(voter.getId());
 				if(isSameOption) {
 					voters.remove(voter);
@@ -170,8 +172,8 @@ public class SurveyController {
 	public void deleteSurvey(@Valid @RequestBody DeleteSurvey surveyObject, @RequestHeader("Authorization") String token) {
 		token = token.substring(7, token.length());
 		String username = jwtUtils.getUserNameFromJwtToken(token);
-		System.out.println("author => " + surveyObject.getUsername());
-		System.out.println("Token username => " + username);
+		log.info("author => " + surveyObject.getUsername());
+		log.info("Token username => " + username);
 		if(!username.equals(surveyObject.getUsername())) {
 			throw new UnauthorizedException();
 		}

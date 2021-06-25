@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +32,7 @@ import survey.payload.SignupRequest;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/users")
+@Slf4j
 public class UserController {
 
 	@Autowired
@@ -48,13 +50,13 @@ public class UserController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		
-		System.out.println("Username: " + loginRequest.getUsername());
-		System.out.println("Password: " + loginRequest.getPassword());
+		log.info("Username is {}", loginRequest.getUsername());
+		log.info("Password is {}", loginRequest.getPassword());
 		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		
-		System.out.println("Authentication " + authentication);
+		log.info("Authentication is {}", authentication);
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
@@ -88,7 +90,7 @@ public class UserController {
 				signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
 		
-		System.out.println(user.getEmail() + " " + user.getPassword() + " " + user.getUsername());
+		log.info(user.getEmail() + " " + user.getPassword() + " " + user.getUsername());
 		
 		userRepository.save(user);
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
@@ -102,9 +104,9 @@ public class UserController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/{token}")
 	public String getUserfromToken(@PathVariable String token) {
-		System.out.println("Token: " + token);
+		log.info("Token is {}", token);
 		String username = jwtUtils.getUserNameFromJwtToken(token);
-		System.out.println("User From Token" + username);
+		log.info("User From Token is {}", username);
 		return username;
 	}
 	
